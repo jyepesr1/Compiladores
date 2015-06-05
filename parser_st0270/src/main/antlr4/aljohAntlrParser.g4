@@ -11,45 +11,44 @@ grammar aljohAntlrParser;
    }
 }
 
-program		: block '.'                                        #print
-                ;
+program		: block '.'                                               #print
+            ;
 
-block       : defconst? defvar? defproc* instruction?                #evalBlock
+block       : defconst? defvar? defproc* instruction?                 #evalBlock
 	         ;
 
-defconst 	: 'const' ID '=' INT (',' ID '=' INT)* ';'            #const
+defconst 	: 'const' ID '=' INT (',' ID '=' INT)* ';'                #const
 			   ;
 
-defvar		: 'var' ID (',' ID)* ';'                              #var
+defvar		: 'var' ID (',' ID)* ';'                                  #var
 			   ;
 
-defproc		: 'procedure' ID ';' block ';'                        #proc
+defproc		: 'procedure' ID ';' block ';'                            #proc
 			   ;
 
 instruction : ID ':=' expr                                            #assign
-				| 'call' ID                          			 #call       
-				| 'begin' instruction (';' instruction)* ';'?'end' #begin
-				| 'if' condition 'then' instruction            #if
-				| 'while' condition 'do' instruction           #while
+				| 'call' ID                          			             #call       
+				| 'begin' instruction (';' instruction)* ';'?'end'        #begin
+				| 'if' condition 'then' instruction                       #if
+				| 'while' condition 'do' instruction                      #while
 				;
 
-condition	: 'odd' expr                                               #odd
-			   | expr ('='|'<>'|'<'|'>'|'<='|'>=') expr        #evalCond 
+condition	: 'odd' expr                                              #odd
+			   | expr ('='|'<>'|'<'|'>'|'<='|'>=') expr                  #evalCond 
 			   ;
 
-expr	: ('+'|'-')? term (('+'| '-') term)*                    #addSub
+expr	: ('+'|'-')? term (('+'| '-') term)*                            #addSub
 		;
 
-term	: factor (('*'|'/') factor)*                            #timesDiv
+term	: factor (('*'|'/') factor)*                                    #timesDiv
 		;
 
-factor	: ID                                                     #id
-		   | INT                                         #int
-		   | '(' expr ')'                                #parens
+factor	: ID                                                         #id
+		   | INT                                                        #int
+		   | '(' expr ')'                                               #parens
 		   ;
 
 ID	: ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
 INT : '1'..'9'('0'..'9')*|'0' ;
-//NEWLINE  : '\r'? '\n';
 
 WS : [ \t\r\n]+ -> skip ;
