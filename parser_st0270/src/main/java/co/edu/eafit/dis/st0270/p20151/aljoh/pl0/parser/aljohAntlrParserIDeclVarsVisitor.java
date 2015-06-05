@@ -4,31 +4,94 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class aljohAntlrParserIDeclVarsVisitor extends
-                                aljohAntlrParserBaseVisitor<String>{ 
+                                aljohAntlrParserBaseVisitor<Set>{ 
     
-    List vars = new ArrayList<String>();
-
+    Set vars = new HashSet();
+    
     public String visitEvalBlock(aljohAntlrParserParser.EvalBlockContext ctx){
-        return "";    	
+    	return "";
     }
-    
+
+    @Override 
+    public Set visitPrint(aljohAntlrParserParser.PrintContext ctx) { 
+        return visitChildren(ctx);
+    }
+   
     @Override
-    public String visitVar(aljohAntlrParserParser.VarContext ctx){
-        System.out.println("Entre a esta Huevada");
-        for(int i=0; i<ctx.ID().size(); i++){
-        	String id = ctx.ID(i).toString();
-        	vars.add(id);
-        }
-        return vars.toString();
+    public Set visitEvalBlock(aljohAntlrParserParser.EvalBlockContext ctx){
+        return visitChildren(ctx);
+    }
+    @Override
+    public Set visitConst(aljohAntlrParserParser.ConstContext ctx){
+        return visitChildren(ctx); 
     }
 
     @Override
-    public String visitAssign(aljohAntlrParserParser.AssignContext ctx){
-        String id = ctx.ID().getText();
-        System.out.println(id);
-    	//int val = visit(ctx.expr());
-    	return id;
+    public Set visitVar(aljohAntlrParserParser.VarContext ctx){ 
+        return visitChildren(ctx);
     }
+    @Override
+    public Set visitProc(aljohAntlrParserParser.ProcContext ctx){
+        return visitChildren(ctx);
+    }
+    @Override
+    public Set visitAssign(aljohAntlrParserParser.AssignContext ctx){
+        return visitChildren(ctx); 
+    }
+    @Override
+    public Set visitCall(aljohAntlrParserParser.CallContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitBegin(aljohAntlrParserParser.BeginContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitIf(aljohAntlrParserParser.IfContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitWhile(aljohAntlrParserParser.WhileContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitOdd(aljohAntlrParserParser.OddContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitEvalCond(aljohAntlrParserParser.EvalCondContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitAddSub(aljohAntlrParserParser.AddSubContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitSetimesDiv(aljohAntlrParserParser.SetimesDivContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitId(aljohAntlrParserParser.IdContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitInt(aljohAntlrParserParser.IntContext ctx){
+        return visitChildren(ctx); 
+    }
+
+    @Override
+    public Set visitParens(aljohAntlrParserParser.ParensContext ctx){
+        return visitChildren(ctx); }
+   }
 
 }
 
