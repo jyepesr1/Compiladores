@@ -8,12 +8,8 @@ public class aljohAntlrParserIDeclVarsVisitor extends
     
     Set vars = new HashSet();
     
-    public String visitEvalBlock(aljohAntlrParserParser.EvalBlockContext ctx){
-    	return "";
-    }
-
     @Override 
-    public Set visitPrint(aljohAntlrParserParser.PrintContext ctx) { 
+    public Set visitEvalProgram(aljohAntlrParserParser.PrintContext ctx) { 
         return visitChildren(ctx);
     }
    
