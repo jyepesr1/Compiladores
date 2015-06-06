@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.ANTLRFileStream;
 
 import co.edu.eafit.dis.st0270.p20151.aljoh.pl0.lexer.aljohAntlrLexer;
 import co.edu.eafit.dis.st0270.p20151.aljoh.pl0.parser.aljohAntlrParserIDeclVarsVisitor;
+import co.edu.eafit.dis.st0270.p20151.aljoh.pl0.parser.aljohAntlrParserLexer;
 import co.edu.eafit.dis.st0270.p20151.aljoh.pl0.parser.aljohAntlrParserParser;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class MainaljohAntlrParser {
         try {
            // mainlexer.fileStream(args[0]);
             afs = new  ANTLRFileStream(args[0]);
-            aljohAntlrLexer lexer = new aljohAntlrLexer(afs);
+            aljohAntlrParserLexer lexer = new aljohAntlrParserLexer(afs);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             aljohAntlrParserParser parser = new aljohAntlrParserParser(tokens);
             ParseTree tree = parser.program();

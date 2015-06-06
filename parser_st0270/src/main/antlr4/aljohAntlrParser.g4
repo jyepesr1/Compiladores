@@ -17,7 +17,7 @@ grammar aljohAntlrParser;
 program		: block '.'                                            #evalProgram
             ;
 
-block       : defconst? defvar? defproc* instruction?              #evalBlock
+block       : defconst? defvar? defproc* instruction              #evalBlock
 	         ;
 
 defconst 	: 'const' ID '=' INT (',' ID '=' INT)* ';'             #const
@@ -31,9 +31,10 @@ defproc		: 'procedure' ID ';' block ';'                         #proc
 
 instruction : ID ':=' expr                                         #assign
 				| 'call' ID                          			          #call       
-				| 'begin' instruction (';' instruction)* ';'?'end'     #begin
+				| 'begin' instruction (';' instruction)* ';'? 'end'     #begin
 				| 'if' condition 'then' instruction                    #if
-				| 'while' condition 'do' instruction                   #while
+				| 'while' condition 'do' instruction                 #while
+				|												  #empty
 				;
 
 condition	: 'odd' expr                                           #odd
