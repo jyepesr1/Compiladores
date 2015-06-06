@@ -14,22 +14,21 @@ public class MainaljohAntlrParser {
 
     public static void main(String args[]) {
 
-        MainaljohAntlrLexer mainlexer = new MainaljohAntlrLexer();
+        //MainaljohAntlrLexer mainlexer = new MainaljohAntlrLexer();
         ANTLRFileStream afs;
 
         try {
-            mainlexer.fileStream(args[0]);
+           // mainlexer.fileStream(args[0]);
             afs = new  ANTLRFileStream(args[0]);
             aljohAntlrLexer lexer = new aljohAntlrLexer(afs);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             aljohAntlrParserParser parser = new aljohAntlrParserParser(tokens);
             ParseTree tree = parser.program();
-            System.out.println("Estoy lograndolo");
             aljohAntlrParserIDeclVarsVisitor  eval = new aljohAntlrParserIDeclVarsVisitor();
             eval.visit(tree);
 
         }catch (Exception ioe) {
-            System.out.println("MAlo");
+            ioe.printStackTrace();
         }
     }
 }
